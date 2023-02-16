@@ -35,6 +35,7 @@ jobs:
                 dep ensure
             fi
             ls -a -lh
+            cat go.sum
       - name: Setup GO
         uses: actions/setup-go@v3
         with:
