@@ -27,12 +27,12 @@ jobs:
         uses: actions/checkout@v3
       - name: Install ToPages
         run: |
-            mkdir toPages
-            wget https://github.com/ThreeTenth/GitHub-Discussions-to-Blog/releases/download/v0.0.1/GitHub-Discussions-to-Blog_0.0.1_linux_amd64.tar.gz
-            tar -xzvf GitHub-Discussions-to-Blog_0.0.1_linux_amd64.tar.gz -C ./toPages/
+            wget https://github.com/ThreeTenth/GitHub-Discussions-to-Blog/releases/download/v0.0.1/GitHub-Discussions-to-Blog_0.0.1_linux_amd64.tar.gz -P ./toPages/
+            cd toPages/
+            tar -xzvf GitHub-Discussions-to-Blog_0.0.1_linux_amd64.tar.gz
       - name: Build site
         run: |
-            chmod 775 ./toPages/GitHub-Discussions-to-Blog_0.0.1_linux_amd64
+            chmod 775 ./toPages/GitHub-Discussions-to-Blog
             ./toPages/GitHub-Discussions-to-Blog_0.0.1_linux_amd64 -owner ${{ github.actor }} -name ${{ github.repository_name }}  -token ${{secrets.GITHUB_TOKEN}} -pages ./
       - name: Commit
         run: |
