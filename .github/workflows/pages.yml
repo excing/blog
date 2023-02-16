@@ -57,7 +57,7 @@ jobs:
             repository=${{ github.repository }}
             repositoryName=$(basename "$repository")
             pagesPath="./"
-            baseURL="/${{ steps.pages.outputs.base_url }}"
+            baseURL="/$repositoryName"
             echo "${{ github.repository_owner }}, $repositoryName, ${{secrets.GITHUB_TOKEN}}, $pagesPath, $baseURL"
             ./GitHub-Discussions-to-Blog/io.github.topages -owner ${{ github.repository_owner }} -name $repositoryName  -token ${{secrets.GITHUB_TOKEN}} -pages $pagesPath -baseURL "/${{ steps.pages.outputs.base_url }}"
             rm -rf ./GitHub-Discussions-to-Blog
