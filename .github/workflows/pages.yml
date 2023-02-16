@@ -53,7 +53,10 @@ jobs:
             ls -a -lh
             cd ..
             chmod 775 ./GitHub-Discussions-to-Blog/io.github.topages
-            ./GitHub-Discussions-to-Blog/io.github.topages -owner ${{ github.actor }} -name ${{ github.repository_name }}  -token ${{secrets.GITHUB_TOKEN}} -pages ./
+            path="abc/def"
+            repository=${{ github.repository }}
+            repositoryName=$(basename "$path")
+            ./GitHub-Discussions-to-Blog/io.github.topages -owner ${{ github.repository_owner }} -name $repositoryName  -token ${{secrets.GITHUB_TOKEN}} -pages ./
             rm -rf ./GitHub-Discussions-to-Blog
             ls -a -lh
       - name: Commit
