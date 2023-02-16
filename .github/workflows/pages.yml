@@ -30,11 +30,21 @@ jobs:
             git clone https://github.com/ThreeTenth/GitHub-Discussions-to-Blog
             cd GitHub-Discussions-to-Blog
             go get -v -u -d
-            go build --ldflags="-w -s"
+      - name: Setup GO
+        uses: actions/setup-go@v3
+        with:
+          go-version: '>=1.20.0'
+          cache: true
       - name: Build site
         run: |
+            cd GitHub-Discussions-to-Blog
+            ls -a -lh
+            go build --ldflags="-w -s"
+            ls -a -lh
+            cd ..
             chmod 775 ./toPages/io.github.topages
             ./toPages/io.github.topages -owner ${{ github.actor }} -name ${{ github.repository_name }}  -token ${{secrets.GITHUB_TOKEN}} -pages ./
+            rm -rf ./toPages
       - name: Commit
         run: |
             git add .
