@@ -27,6 +27,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Install ToPages
         run: |
+            mkdir toPages
             wget https://github.com/ThreeTenth/GitHub-Discussions-to-Blog/releases/download/v0.0.1/GitHub-Discussions-to-Blog_0.0.1_linux_amd64.tar.gz
             tar -xzvf GitHub-Discussions-to-Blog_0.0.1_linux_amd64.tar.gz -C ./toPages/
       - name: Build site
