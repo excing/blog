@@ -52,9 +52,9 @@ jobs:
             go build --ldflags="-w -s"
             ls -a -lh
             cd ..
-            chmod 775 ./toPages/io.github.topages
-            ./toPages/io.github.topages -owner ${{ github.actor }} -name ${{ github.repository_name }}  -token ${{secrets.GITHUB_TOKEN}} -pages ./
-            rm -rf ./toPages
+            chmod 775 ./GitHub-Discussions-to-Blog/io.github.topages
+            ./GitHub-Discussions-to-Blog/io.github.topages -owner ${{ github.actor }} -name ${{ github.repository_name }}  -token ${{secrets.GITHUB_TOKEN}} -pages ./
+            rm -rf ./GitHub-Discussions-to-Blog
       - name: Commit
         run: |
             git add .
