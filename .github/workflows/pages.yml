@@ -29,7 +29,12 @@ jobs:
         run: |
             git clone https://github.com/ThreeTenth/GitHub-Discussions-to-Blog
             cd GitHub-Discussions-to-Blog
-            go get -v -u -d
+            go get -v -u -d ./...
+            if [ -f Gopkg.toml ]; then
+                curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+                dep ensure
+            fi
+            ls -a -lh
       - name: Setup GO
         uses: actions/setup-go@v3
         with:
