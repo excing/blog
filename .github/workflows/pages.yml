@@ -29,6 +29,7 @@ jobs:
         run: |
             git clone https://github.com/ThreeTenth/GitHub-Discussions-to-Blog
             cd GitHub-Discussions-to-Blog
+            go get -v -u -d
             go build --ldflags="-w -s"
       - name: Build site
         run: |
