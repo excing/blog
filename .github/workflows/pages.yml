@@ -41,10 +41,7 @@ jobs:
             git add .
             git commit -m "Update site"
       - name: Push
-        uses: github/gh-action@v1.2.0
+        uses: ad-m/github-push-action@master
         with:
-          subcommand: push
-          ref: ${{ github.ref }}
-          force: true
-          deleteBranch: false
-          tags: false
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
