@@ -55,6 +55,7 @@ jobs:
             chmod 775 ./GitHub-Discussions-to-Blog/io.github.topages
             ./GitHub-Discussions-to-Blog/io.github.topages -owner ${{ github.actor }} -name ${{ github.repository_name }}  -token ${{secrets.GITHUB_TOKEN}} -pages ./
             rm -rf ./GitHub-Discussions-to-Blog
+            ls -a -lh
       - name: Commit
         run: |
             git add .
