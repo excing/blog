@@ -56,8 +56,9 @@ jobs:
             path="abc/def"
             repository=${{ github.repository }}
             repositoryName=$(basename "$repository")
-            echo "$repository, $repositoryName"
-            ./GitHub-Discussions-to-Blog/io.github.topages -owner ${{ github.repository_owner }} -name $repositoryName  -token ${{secrets.GITHUB_TOKEN}} -pages ./
+            pagesPath="./"
+            echo "${{ github.repository_owner }}, $repositoryName, ${{secrets.GITHUB_TOKEN}}, $pagesPath"
+            ./GitHub-Discussions-to-Blog/io.github.topages -owner ${{ github.repository_owner }} -name $repositoryName  -token ${{secrets.GITHUB_TOKEN}} -pages $pagesPath
             rm -rf ./GitHub-Discussions-to-Blog
             ls -a -lh
       - name: Commit
