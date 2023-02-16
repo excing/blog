@@ -1,0 +1,50 @@
+name: Deploy site to Pages
+
+on:
+  discussion:
+    types: [created, edited, deleted]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v3
+      - name: Install ToPages
+        run: |
+            wget https://github.com/ThreeTenth/GitHub-Discussions-to-Blog/releases/download/v0.0.1/GitHub-Discussions-to-Blog_0.0.1_linux_amd64.tar.gz
+            tar -xzvf GitHub-Discussions-to-Blog_0.0.1_linux_amd64.tar.gz -C ./toPages/
+      - name: Build site
+        run: |
+            chmod 775 ./toPages/GitHub-Discussions-to-Blog_0.0.1_linux_amd64
+            ./toPages/GitHub-Discussions-to-Blog_0.0.1_linux_amd64 -owner ${{ github.actor }} -name ${{ github.repository_name }}  -token ${{secrets.GITHUB_TOKEN}} -pages ./
+      - name: Commit
+        run: |
+            git add .
+            git commit -m "Update site"
+      - name: Push
+        uses: github/gh-action@v1.2.0
+        with:
+          subcommand: push
+          ref: ${{ github.ref }}
+          force: true
+          deleteBranch: false
+          tags: false
