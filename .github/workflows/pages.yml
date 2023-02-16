@@ -33,7 +33,7 @@ jobs:
       - name: Build site
         run: |
             chmod 775 ./toPages/GitHub-Discussions-to-Blog
-            ./toPages/GitHub-Discussions-to-Blog_0.0.1_linux_amd64 -owner ${{ github.actor }} -name ${{ github.repository_name }}  -token ${{secrets.GITHUB_TOKEN}} -pages ./
+            ./toPages/GitHub-Discussions-to-Blog -owner ${{ github.actor }} -name ${{ github.repository_name }}  -token ${{secrets.GITHUB_TOKEN}} -pages ./
       - name: Commit
         run: |
             git add .
