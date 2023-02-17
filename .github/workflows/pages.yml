@@ -58,8 +58,8 @@ jobs:
             repositoryName=$(basename "$repository")
             pagesPath="./"
             baseURL="/$repositoryName"
-            gamID="${{ vars.gamID }}"
-            echo "${{ github.repository_owner }}, $repositoryName, ${{secrets.GITHUB_TOKEN}}, $pagesPath, $baseURL, $gamID"
+            gamID="${{ vars.GAMID }}"
+            echo "${{ github.repository_owner }}, $repositoryName, ${{secrets.GITHUB_TOKEN}}, $pagesPath, $baseURL, $gamID,"
             ./GitHub-Discussions-to-Blog/io.github.topages -owner ${{ github.repository_owner }} -name $repositoryName  -token ${{secrets.GITHUB_TOKEN}} -pages $pagesPath -baseURL $baseURL -gamID $gamID
             rm -rf ./GitHub-Discussions-to-Blog
             ls -a -lh
