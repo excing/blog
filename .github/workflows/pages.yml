@@ -25,7 +25,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Install ToPages
+      - name: Install Noll
         run: |
             git clone https://github.com/NollGo/Noll
             cd Noll
@@ -36,11 +36,11 @@ jobs:
             fi
             ls -a -lh
             echo "GO GET SUCCESSED"
-            cat go.mod            
+            cat go.mod
             cat go.sum
             go build --ldflags="-w -s"
             ls -a -lh
-            chmod 775 ./Noll/io.github.nollgo
+            chmod 775 ./io.github.nollgo
             echo "NEXT"
       - name: Build site
         run: |
