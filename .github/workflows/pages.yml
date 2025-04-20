@@ -38,10 +38,10 @@ jobs:
             git clone https://github.com/NollGo/Noll
             cd Noll
             go get -v -d ./...
-            # if [ -f Gopkg.toml ]; then
-            #     curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
-            #     dep ensure
-            # fi
+            if [ -f Gopkg.toml ]; then
+                DEP_RELEASE_TAG=v1.16 && curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+                dep ensure
+            fi
             ls -a -lh
             echo "GO GET SUCCESSED"
             cat go.mod
